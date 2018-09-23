@@ -57,11 +57,6 @@ export default class Cart extends Component{
     });
     return total;
   }
-  addProduct = () => {
-    let products = this.state.products;
-    products.push({price: this.props.price, name: this.props.name, quantity: this.props.quantity});
-    this.setState(products);
-  }
   render() {
     return (
       <ul className="cart" style={styles.cartStyle}>
