@@ -1,0 +1,5 @@
+.name, .price, .quantity
+{
+  display: inline-block;
+  /* margin: 0 20px; */
+}
