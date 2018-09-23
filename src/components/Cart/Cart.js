@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import './Cart.css';
 
-const products = [
-  {name: "producto 1", price: 12, quantity: 0},
-  {name: "producto 2", price: 15, quantity: 0},
-  {name: "producto 3", price: 3, quantity: 0},
-];
+// const products = [
+//   {name: "producto 1", price: 12, quantity: 0},
+//   {name: "producto 2", price: 15, quantity: 0},
+//   {name: "producto 3", price: 3, quantity: 0},
+// ];
 
 const styles = {
   prodStyle: {
@@ -37,22 +37,11 @@ const Product = (props) => {
 export default class Cart extends Component{
   state = {
     total: 0,
-    products,
   }
   
-  handlerIncrement = (keyProduct) => {
-    const products = this.state.products;
-    products[keyProduct].quantity++;
-    this.setState({products});
-  };
-  handlerDecrement = (keyProduct) => {
-    const products = this.state.products;
-    if (products[keyProduct].quantity > 0) products[keyProduct].quantity--;
-    this.setState({products});
-  };
   calculateTotal = () => {
     var total = 0;
-    this.state.products.forEach(product => {
+    this.props.products.forEach(product => {
       total += product.price * product.quantity;
     });
     return total;
@@ -60,14 +49,14 @@ export default class Cart extends Component{
   render() {
     return (
       <ul className="cart" style={styles.cartStyle}>
-        {this.state.products.map((product, index) => {
+        {this.props.products.map((product, index) => {
           return (<
             Product 
             name={product.name} 
             price={product.price} 
             quantity={product.quantity}
-            increment={this.handlerIncrement}
-            decrement={this.handlerDecrement}
+            increment={this.props.handlerIncrement}
+            decrement={this.props.handlerDecrement}
             key={index}
             id={index}
           />);
